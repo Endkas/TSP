@@ -1,0 +1,80 @@
+import numpy as np
+import random 
+
+
+
+class Cities(object):
+    def __init__(self,n,seed = 10):
+        """
+        
+
+        Parameters
+        ----------
+        n : Number of cities you want to generate
+        seed : The seed you want to use for random.seed(seed=seed), optional.
+        The default is 10. The seed is by default the same for all the different classes,so
+        that with the same number of cities, the matrix of distances is the same.
+        With that we can compare results of different algorithms as it exactly the same numbers in the
+        distances'matrix.
+        
+
+        At the initizialtion of the object, the method matdist is applied.
+        
+        With this class Cities,we want to create n cities,with latitudes and longitudes.
+        With thoses we can generate a matrix of distances and then apply our different 
+        algorithm to solve the Travelling Salesman Prblem.
+        
+        Cities will be the superclass of BruteForce,nearest neighbour and ant classes.
+        
+
+        """
+        self.n = n
+        self.seed = seed
+        self.matdist() # at the initilization it apply the method matdis to have the ditance matrix
+    def latlong(self):
+        """
+        Returns
+        -------
+        x
+            a lit of latitutes of size n.
+        y
+            a list of longitude of size n.
+
+        """
+        self.x = []
+        self.y = []
+        random.seed(self.seed)
+        for i in range(self.n):
+            a = random.uniform(0,18)
+            b = random.uniform(0,36)
+            self.x.append(a)
+            self.y.append(b)
+        return self.x,self.y
+    
+    def matdist(self):
+        """
+
+        Returns
+        -------
+        mat
+            This a symmetric matrix of distances,it will be primoridal to
+            apply the TSP problem.
+        coord
+            It is a list of tuples (x,y),you can see it conceptualy as GPS
+            coordinates aka the location of our map.
+
+        """
+        self.latlong() 
+        self.coord = []
+        self.mat = np.zeros((self.n,self.n))
+        for i in range(self.n):
+            self.coord.append((self.x[i],self.y[i]))
+            for j in range(i+1,self.n):
+                la = (self.x[i]-self.x[j])**2
+                lon = (self.y[i]-self.y[j])**2
+                self.mat[i,j] = (la + lon)**0.5
+                self.mat[j,i] = self.mat[i,j]
+        return self.mat,self.coord
+    
+
+
