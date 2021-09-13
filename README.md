@@ -1,32 +1,26 @@
-# A meta-heuristic way to solve a combinatorial
+# A meta-heuristic way to solve a combinatorial problem
 
-# problem
-
-## 1 stEndrit Kastrati
-
-```
+1st Endrit Kastrati
 dept. of Finance
 HEC, University of Lausanne
 Lausanne, Switzerland
 endrit.kastrati@unil.ch
-```
-## 2 ndGregory Porchet
 
-```
+2nd Gregory Porchet
 dept. of Finance
 HEC, University of Lausanne
 Lausanne, Switzerland
 gregory.porchet@unil.ch
-```
-## 3 rdDiego Levy
 
-```
+3rd Diego Levy
 dept. of Finance
 HEC, University of Lausanne
 Lausanne, Switzerland
 diego.levy@unil.ch
-```
-Abstract—”Given a list of cities and the distances between each
+
+
+ # Abstract
+—”Given a list of cities and the distances between each
 pair of cities, what is the shortest possible path that visits each
 city exactly once and returns to the starting city?”
 The Traveling salesman problem has been one of the most studied
@@ -40,7 +34,7 @@ In this paper, we will focus on two heuristic algorithms. The
 Nearest Neighbor algorithm and the Ant Colony optimization
 algorithm.
 
-I. INTRODUCTION
+# I. INTRODUCTION
 The traveling salesman problem (TSP) asks the following
 question :” What is the shortest path between a fixed number
 of cities with distances between each pair of cities, knowing
@@ -68,94 +62,26 @@ from a city to itself,which is rationally 0.
 In this paper, we will focus only on the symmetric TSP,which
 states that the distance from 2 cities is the same whatever the
 direction.
-The problem has been formulated mathematically as follows
 
-```
+The problem has been formulated mathematically as follows
 by Dantzig–Fulkerson–Johnson :
 Label the cities with the numbers 1,... , n and define:
-![Capture d’écran (169)](Capture d’écran (169).png)
-```
-```
-xij=
-```
-### {
 
-```
-1 the path goes from city i to city j
-0 otherwise
-```
-```
-Let dij> 0 to be the distance from city i to city j
-```
-```
-min
-```
-```
-∑n
-```
-```
-i=
-```
-```
-∑n
-```
-```
-j 6 =i,j=
-```
-```
-dijxij: (1)
-```
-```
-s.t
-```
-```
-∑n
-```
-```
-i=1,i 6 =j
-```
-```
-xij= 1 j= 1,...,n; (2)
-```
-```
-∑n
-```
-```
-j=1,j 6 =i
-```
-```
-xij= 1 i= 1,...,n; (3)
-∑
-```
-```
-i∈Q
-```
-### ∑
+![](https://github.com/Endkas/TSP/blob/main/ab.png)
 
-```
-j 6 =i,j∈Q
-```
-```
-xij≤|Q|− 1 ∀Q({ 1 ,...,n},|Q|≥
-```
-```
-(4)
 The equation (1) is the minimization problem subject to
 constraints equations (2), (3) and (4). The constraints (2) and
 (3) ensure that all cities are visited once and that we go back
 to the starting city.The constraint (4) ensures no proper subset
 Q can form a sub-tour, so the solution returned is a single
 tour and not the union of smaller tours.
-```
-```
 After solving this minimization for a fixed number n of
 cities,We obtain the minimum length. We can also infer the
 smallest path,which is a sequence of the labeled cities.In this
 sequence, the starting city appears at the begging and the
 end.The length of the sequence is n + 1 and therefore form a
 Hamiltonian Cycle.
-```
-```
+
 Let’s look concretely at an example to see properly the
 problem. Imagine our starting point is Zurich, and we want to
 visit the nine other biggest cities of Switzerland. If you look at
@@ -163,20 +89,13 @@ Figure 1, you can see the shortest path if you want to visit these
 destinations with your car.Nevertheless, it might be easier to
 represent the shortest path as the crow flies, which is what
 we did in Figure 2. The second representation highlights the
-```
-
-problem and all his constraints. The shortest path for Figure
-2 is :
-
-```
+problem and all his constraints. 
+The shortest path for Figure
+2 is : \
 Zurich→Winterthur→St.Gallen→Lugano
-```
-```
 →Geneva→Lausanne→Bern
-```
-```
 →Biel→Basel→Lucerne→Zurich
-```
+
 In the first representation, distances are expressed in kilometers
 whereas in second it is the euclidean distance between the
 coordinates (longitude and latitude) of one city from another.
@@ -186,19 +105,23 @@ coordinate system to express the location of a city.
 For this small example, intuitively we could think that there
 is not a lot of possible paths.Nevertheless, there are 184’
 possible paths for the symmetric TSP and twice as much
-for the asymmetric one. The Table 1 shows the evolution of
+for the asymmetric one. 
+
+![](https://github.com/Endkas/TSP/blob/main/abc.png)
+The Table 1 shows the evolution of
 number of possible paths. We can clearly see that the traveling
 salesman problem belongs to the NP category.
 
 Fig. 1. The shortest path by car between the 10 biggest cities in Switzerland,
 coded in python with folium and openrouteservice
+![](https://github.com/Endkas/TSP/blob/main/mapcoupe.png)
 
 Fig. 2. The shortest path as the crow flies between the 10 biggest in
 Switzerland, coded in python with folium
+![](https://github.com/Endkas/TSP/blob/main/mapcoupe2.png)
 
 ### II. DESCRIPTION OF THE RESEARCH QUESTION
 
-```
 The fastest known algorithm to find the correct answer of
 the TSP for a number n of cities, is the Held-Karp Algorithm
 using dynamic programming.This algorithm has a complexity
@@ -224,13 +147,8 @@ We will look at the execution time and the precision. The
 precision will be defined as follows : 1 −mlhml−ml,withmlh
 the minimum length found by the different heuristic algorithms
 and ml the true minimum length.
-```
 ### III. METHODOLOGY
-
-```
 A. Brute Force Algorithm
-```
-```
 The brute force algorithm is simple, it tries every permu-
 tations of paths possible from the starting city. This algo-
 rithm will always find the shortest path for a complexity of
@@ -246,17 +164,7 @@ was not decent. We found it very lately, with our project’s
 structure already being done.
 Therefore, we decided to use a library(python-tsp) with the
 Held-Karp algorithm implemented.
-```
-```
-TABLE I
-THE AMOUNT OF POSSIBLE PATHS DEPENDING ON THE CITIES
-Number of cities number of possible paths for the symmetric TSP
-5 12
-10 181440
-15 43589145600
-25 3.102242e+
-n (n− 2 1)!
-```
+
 
 B. Nearest Neighbour Algorithm
 
