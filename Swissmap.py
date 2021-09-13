@@ -38,7 +38,7 @@ pathcoord = [] # we need the coordinate to be in the order of the minpath to plo
 for i in minpath:
     pathcoord.append(coordinates[i])
     
-client = openrouteservice.Client(key='5b3ce3597851110001cf62480f496c7594c84a88a8cd5d715060531d') # my personal API key for openrouteservice
+client = openrouteservice.Client(key='*************') # put your personal API key for openrouteservice
 
 route = client.directions(coordinates=pathcoordkm,profile='driving-car',format='geojson')
 style1 = {'fillColor': 'lightblue', 'color': 'lightblue'}
