@@ -149,6 +149,7 @@ the minimum length found by the different heuristic algorithms
 and ml the true minimum length.
 ### III. METHODOLOGY
 A. Brute Force Algorithm
+
 The brute force algorithm is simple, it tries every permu-
 tations of paths possible from the starting city. This algo-
 rithm will always find the shortest path for a complexity of
@@ -199,69 +200,15 @@ being visited,we must come back to city 1. The matrix of
 paths P, has a 1 on same entries as distances chosen. In this
 example,(1,4),(4,3),(3,2) and (2,1).
 
-### A=
+![](https://github.com/Endkas/TSP/blob/main/abcde.png)
 
-### ![Capture d’écran (169)](https://user-images.githubusercontent.com/81076141/132995399-f58a0a46-12e8-4dc6-bacd-4d775bbecec1.png)
-
-
-### 
-
-### 
-
-### 
-
-```
-0 a b c
-a 0 d e
-b d 0 f
-c e f 0
-```
-### 
-
-### 
-
-### 
-
-###  P=
-
-### 
-
-### 
-
-### 
-
-### 
-
-### 0 0 0 1
-
-### 1 0 0 0
-
-### 0 1 0 1
-
-### 0 0 1 0
-
-### 
-
-### 
-
-### 
-
-### 
-
-The matrix multiplication
-
-```
-APT
-```
+The matrix multiplication  <img src="https://latex.codecogs.com/gif.latex?AP^T" title="AP^T" />
 gives us the length of the min-path if we start from the first
 line of the matrix A, which is the first city. The min-path value
 is therefore c + f + d + a. We can infer the path sequence from
 the matrix P as we explained before.The min-path sequence
-for this example is :
+for this example is : 1 → 4 → 3 → 2 → 1
 
-```
-1 → 4 → 3 → 2 → 1
-```
 From this small example, we can see the weakness of the NNV,
 when we visit the last city we have to go back to our starting
 city. This last length can be very costly. Indeed, it costs us a,
@@ -272,10 +219,9 @@ to go back to the starting city from last city visited. We also
 see in this figure, that the last distance with NNV can be very
 costly.
 
-```
-Fig. 3. NNV shortest path found with 200 cities
-```
-```
+Fig. 3. NNV shortest path found with 200 cities GraphNNV-200citiesGOOD
+![](https://github.com/Endkas/TSP/blob/main/GraphNNV-200citiesGOOD.png)
+
 To potentially deal with this problem, we thought we could try
 to begin the algorithm at different starting cities. We applied
 the algorithm to each city being the starting city and then
@@ -306,39 +252,15 @@ being the number of cities. Then, when we are the second city
 we have n-2 choices etc... Therefore, in every case we must
 check for each city the n-i choices, with i being the position
 of the city. This can be represented mathematically :
-∑n
-```
-```
-i=
-```
-```
-(n−i)⇔n^2 −
-```
-```
-∑n
-```
-```
-i=
-```
-```
-i⇔n^2 −
-```
-```
-n(n+ 1)
-2
-```
-```
-⇔ 2 n^2 −n^2 − 1 ⇔n^2 − 1 .:
+![](https://github.com/Endkas/TSP/blob/main/proof.png)
 By using big O notation, we can therefore conclude that that
-the algorithm complexity is O(n^2 ). As every city will be tested
-```
-
+the algorithm complexity is O(n^2). As every city will be tested
 as the first one, we will apply the algorithm n times. This
-implies that the final complexity of our algorithm is O(n^3 ).
+implies that the final complexity of our algorithm is O(n^3).
 
-```
 Fig. 4. NNV shortest path found with 200 cities
-```
+![](https://github.com/Endkas/TSP/blob/main/nnv-2000.png)
+
 C. Ant Colony Optimization
 
 Insect societies have developed a highly well-structured
@@ -375,16 +297,13 @@ chooses a path, there is a higher probability that they will
 choose the one below. Also, after a certain number of batches,
 the upper path will not be chosen anymore. This number of
 batches will depend on the evaporation rate: if the pheromones
-
-```
 evaporate quickly, the number of batches needed for the upper
 path to no longer be chosen will be higher.
-```
-```
+
 Fig. 5. An illustration of two ants, which go from their nests to the food and
 come back
-```
-```
+![](https://github.com/Endkas/TSP/blob/main/pheromone.png)
+
 E. ACO for traveling salesman problem
 As stated above, the main goal of the traveling salesman
 problem is to find the shortest path going through a specified
