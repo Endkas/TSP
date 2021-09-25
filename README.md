@@ -14,12 +14,6 @@ the robust method of testing every single possibility.
 In this paper, we will focus on two heuristic algorithms. The
 Nearest Neighbor algorithm and the Ant Colony optimization
 algorithm.
-r n of
-cities,We obtain the minimum length. We can also infer the
-smallest path,which is a sequence of the labeled cities.In this
-sequence, the starting city appears at the begging and the
-end.The length of the sequence is n + 1 and therefore form a
-Hamiltonian Cycle.
 
 Here is the link to the paper we wrote : 
 https://drive.google.com/file/d/1wShX77DE3LCfDkEYnY_KmaxdR2H8q6RR/view
